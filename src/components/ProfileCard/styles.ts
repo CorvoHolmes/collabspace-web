@@ -44,10 +44,10 @@ export const Container = styled.aside`
 `;
 
 export const Cover = styled.img`
-  height: 6rem;
   width: 100%;
+  height: 6rem;
   object-fit: cover;
-  border-radius: 8px 8px 0 0 var;
+  border-radius: 8px 8px 0 0;
 `;
 
 export const Divider = styled.div`

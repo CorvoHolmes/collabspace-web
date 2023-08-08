@@ -18,26 +18,26 @@ export const Form = styled.form`
 
   h1 {
     color: var(--zinc-100);
-    font-weight: 600;
     font-size: 3rem;
+    font-weight: 600;
     margin-bottom: 2.5rem;
   }
+`;
 
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
+export const Group = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
 `;
 
 export const Label = styled.label`
   color: var(--zinc-100);
-  font-weight: 300px;
+  font-weight: 300;
 `;
 
 export const Input = styled.input`
-  height: 44px;
+  height: 48px;
   background: var(--zinc-800);
   color: var(--zinc-100);
   font-size: 1rem;
@@ -47,13 +47,13 @@ export const Input = styled.input`
   outline: 0;
 
   ::placeholder {
-    color: var(--zinc-500);
+    color: ar(--zinc-500);
   }
 `;
 
 export const Button = styled.button`
   height: 48px;
-  background: var(--emerald-700);
+  background: var(--emerald-600);
   color: var(--zinc-100);
   font-size: 1.125rem;
   font-weight: bold;

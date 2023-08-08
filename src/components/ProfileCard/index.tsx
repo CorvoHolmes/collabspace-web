@@ -1,18 +1,20 @@
+import { Container, Cover, Divider, ButtonEdit } from "./styles";
+
 import Avatar from "../Avatar";
-import { ButtonEdit, Container, Cover, Divider } from "./styles";
 
 const ProfileCard: React.FC = () => {
   return (
     <Container>
       <header>
-        <Cover src="https://img.freepik.com/vetores-gratis/paisagem-noturna-do-oceano-lua-cheia-e-estrelas-brilham_107791-7397.jpg" />
+        <Cover src="https://cutewallpaper.org/29/dual-screen-mr-robot-wallpaper/247286624.jpg" />
+
         <div>
           <Avatar />
         </div>
       </header>
 
       <main>
-        <h1>Nome</h1>
+        <h1>Corvo Holmes</h1>
         <p>email@email.com</p>
       </main>
 
