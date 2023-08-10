@@ -6,6 +6,7 @@
   --zinc-200: #e4e4e7;
   --zinc-300: #d4d4d8;
   --zinc-500: #71717a;
+  --zinc-600: #52525b;
   --zinc-700: #3f3f46;
   --zinc-800: #27272a;
   --zinc-900: #18181b;
@@ -29,6 +30,8 @@ body, input, textarea, button {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Custom scrollbar body */
+
 body {
   overflow-x: hidden;
   
@@ -47,5 +50,29 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar {
   width: 0.5rem;
 }
+
+
+/* Custom scrollbar  */
+
+textarea {
+  overflow-x: hidden;
+  
+}
+
+textarea::-webkit-scrollbar-track {
+  margin: 8px 0;
+  background: var(--zinc-900);
+
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background: var(--zinc-600);
+}
+
+textarea::-webkit-scrollbar {
+  width: 4px;
+}
+
 
 
