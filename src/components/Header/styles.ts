@@ -9,7 +9,6 @@ export const Container = styled.header`
   align-items: center;
   justify-content: center;
 
-  img {
-    width: 3.5rem;
-  }
+  position: fixed;
+  z-index: 999;
 `;
