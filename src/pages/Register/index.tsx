@@ -3,11 +3,13 @@ import { useState } from "react";
 import {
   Container,
   Form,
+  ErrorAlert,
   Group,
   Label,
   Input,
   AreaEmail,
   AreaPassword,
+  PasswordMeter,
   Button,
 } from "./styles";
 
@@ -22,7 +24,7 @@ const Register: React.FC = () => {
   const areaEmail = !name || !birthDate;
   const areaPassword = !email || !confirmEmail || areaEmail;
   const isTheSameEmails = email === confirmEmail;
-  const isEmailReal = !email.match(
+  const isEmail = email.match(
     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
   );
   const isTheSamePasswords = password === confirmPassword;
@@ -34,6 +36,14 @@ const Register: React.FC = () => {
     <Container>
       <Form>
         <h1>Cadastre-se</h1>
+
+        {email && !isEmail && <ErrorAlert>O email não é válido!</ErrorAlert>}
+        {confirmEmail && !isTheSameEmails && (
+          <ErrorAlert>Os e-mail não coincidem!</ErrorAlert>
+        )}
+        {confirmPassword && !isTheSamePasswords && (
+          <ErrorAlert>As senhas não coincidem!</ErrorAlert>
+        )}
 
         <Group>
           <Label htmlFor="name">Nome</Label>
@@ -92,7 +102,7 @@ const Register: React.FC = () => {
         </AreaEmail>
 
         <AreaPassword
-          $areaPassword={areaPassword || !isTheSameEmails || isEmailReal}
+          $areaPassword={areaPassword || !isTheSameEmails || !isEmail}
         >
           <Label htmlFor="password">Sua senha secreta</Label>
 
@@ -105,6 +115,8 @@ const Register: React.FC = () => {
               setPassword(e.target.value);
             }}
           />
+
+          {password && <PasswordMeter $isWeak={!isPasswordStrong} />}
 
           <Input
             type="password"
@@ -125,7 +137,7 @@ const Register: React.FC = () => {
             areaEmail ||
             areaPassword ||
             !isTheSameEmails ||
-            isEmailReal ||
+            !isEmail ||
             !isTheSamePasswords ||
             isPasswordStrong
           }
