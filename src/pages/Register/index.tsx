@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Container,
@@ -11,9 +12,12 @@ import {
   AreaPassword,
   PasswordMeter,
   Button,
+  LinkLogin,
 } from "./styles";
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
@@ -31,6 +35,10 @@ const Register: React.FC = () => {
   const isPasswordStrong = !password.match(
     /(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
   );
+
+  const handleLogin = () => {
+    navigate("/");
+  };
 
   return (
     <Container>
@@ -68,6 +76,7 @@ const Register: React.FC = () => {
             value={birthDate}
             min="1900-01-01"
             max="2022-12-31"
+            required
             onChange={(e) => {
               setBirthDate(e.target.value);
             }}
@@ -82,6 +91,7 @@ const Register: React.FC = () => {
             id="email"
             placeholder="Seu e-mail"
             value={email}
+            required
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -92,6 +102,7 @@ const Register: React.FC = () => {
             id="confirmarEmail"
             placeholder="Confirmar e-mail"
             value={confirmEmail}
+            required
             onChange={(e) => {
               setConfirmEmail(e.target.value);
             }}
@@ -111,6 +122,7 @@ const Register: React.FC = () => {
             id="password"
             placeholder="Sua senha"
             value={password}
+            required
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -123,6 +135,7 @@ const Register: React.FC = () => {
             id="confirmPassword"
             placeholder="Confirmar senha"
             value={confirmPassword}
+            required
             onChange={(e) => {
               setConfirmPassword(e.target.value);
             }}
@@ -144,6 +157,11 @@ const Register: React.FC = () => {
         >
           Cadastrar
         </Button>
+
+        <LinkLogin>
+          <p>Já sou cadastrado?</p>
+          <a onClick={handleLogin}>Entrar agora</a>
+        </LinkLogin>
       </Form>
     </Container>
   );
