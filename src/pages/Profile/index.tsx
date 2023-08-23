@@ -2,6 +2,8 @@ import LayoutDefault from "../../layouts/Default";
 
 import RequestFriend from "../../components/RequestFriend";
 
+import { Camera, PencilSimple, MapPin, Phone, Clock } from "phosphor-react";
+
 import {
   Content,
   Overview,
@@ -15,7 +17,14 @@ import {
   Container,
   RequestList,
   Sidebar,
+  Friends,
+  FriendList,
+  AreaFriendButton,
+  UserBanner,
+  EditCoverButton,
+  EditInfoButton,
 } from "./styles";
+import FriendCard from "../../components/FriendCard";
 
 const Profile: React.FC = () => {
   return (
@@ -23,9 +32,18 @@ const Profile: React.FC = () => {
       <Container>
         <Content>
           <Overview>
-            <Cover src="https://cutewallpaper.org/29/dual-screen-mr-robot-wallpaper/247286624.jpg" />
+            <UserBanner>
+              <EditCoverButton>
+                <Camera size={22} weight="fill" />
+              </EditCoverButton>
+              <Cover src="https://cutewallpaper.org/29/dual-screen-mr-robot-wallpaper/247286624.jpg" />
 
-            <Avatar src="https://i.pinimg.com/736x/b7/65/02/b76502e936cd209b595bd7a537e74db4.jpg" />
+              <Avatar src="https://i.pinimg.com/736x/b7/65/02/b76502e936cd209b595bd7a537e74db4.jpg" />
+
+              <EditInfoButton>
+                <PencilSimple size={22} weight="bold" />
+              </EditInfoButton>
+            </UserBanner>
 
             <UserInfo>
               <General>
@@ -48,12 +66,43 @@ const Profile: React.FC = () => {
               </General>
 
               <Contact>
-                <span>Jaborandi, São Paulo, Brasil</span>
-                <span>(17) 991008354</span>
-                <span>Entrou em fevereiro de 2023</span>
+                <span>
+                  <MapPin size={20} weight="bold" />
+                  Jaborandi, São Paulo, Brasil
+                </span>
+                <span>
+                  <Phone size={20} weight="bold" />
+                  (17) 991008354
+                </span>
+                <span>
+                  <Clock size={20} weight="bold" />
+                  Entrou em fevereiro de 2023
+                </span>
               </Contact>
             </UserInfo>
           </Overview>
+
+          <Friends>
+            <h1>Amigos</h1>
+            <FriendList>
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+              <FriendCard />
+            </FriendList>
+
+            <AreaFriendButton>
+              <button>Ver todos os amigos</button>
+            </AreaFriendButton>
+          </Friends>
         </Content>
 
         <Sidebar>
