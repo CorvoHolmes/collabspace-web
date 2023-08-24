@@ -1,9 +1,14 @@
-import { Avatar, Container, Info } from "./styles";
+import AvatarSquare from "../AvatarSquare";
+
+import { Container, Info } from "./styles";
 
 const FriendCard: React.FC = () => {
   return (
     <Container>
-      <Avatar src="https://i.pinimg.com/736x/b7/65/02/b76502e936cd209b595bd7a537e74db4.jpg" />
+      <AvatarSquare
+        size="72px"
+        src="https://i.pinimg.com/736x/b7/65/02/b76502e936cd209b595bd7a537e74db4.jpg"
+      />
 
       <Info>
         <h1>Natan Foleto</h1>

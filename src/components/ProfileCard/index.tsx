@@ -8,16 +8,22 @@ import {
   ButtonEdit,
 } from "./styles";
 
-import Avatar from "../Avatar";
+import AvatarSquare from "../AvatarSquare";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCard: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleMe = () => {
+    navigate("/me");
+  };
   return (
     <Container>
       <Header>
         <Cover src="https://cutewallpaper.org/29/dual-screen-mr-robot-wallpaper/247286624.jpg" />
 
-        <div>
-          <Avatar
+        <div onClick={handleMe}>
+          <AvatarSquare
             src="https://i.pinimg.com/736x/b7/65/02/b76502e936cd209b595bd7a537e74db4.jpg"
             borderEffect
           />
@@ -25,7 +31,7 @@ const ProfileCard: React.FC = () => {
       </Header>
 
       <Content>
-        <h1>Corvo Holmes</h1>
+        <h1 onClick={handleMe}>Corvo Holmes</h1>
         <p>email@email.com</p>
       </Content>
 
