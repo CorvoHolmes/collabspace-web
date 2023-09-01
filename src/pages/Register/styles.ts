@@ -27,12 +27,13 @@ export const Form = styled.form`
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  margin: 2.5rem 0;
+  margin: 4rem 0;
 
   h1 {
     color: var(--zinc-100);
     font-size: 3rem;
     font-weight: 600;
+    margin-bottom: 1.5rem;
   }
 
   input[type="date"] {
@@ -40,14 +41,13 @@ export const Form = styled.form`
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(66.66);
+    filter: invert(66.66%);
   }
 `;
 
 export const ErrorAlert = styled.div`
   display: flex;
   justify-content: center;
-  text-align: center;
   padding: 1rem;
   border-radius: 6px;
   border: 1px solid var(--red-500);
@@ -103,38 +103,44 @@ export const AreaPassword = styled(Group)<AreaPasswordProps>`
     $areaPassword &&
     css`
       max-height: 0;
-    `}
+    `};
 `;
 
 export const PasswordMeter = styled.div<PasswordMeterProps>`
   height: 2px;
   border-radius: 9999px;
-  text-align: center;
   font-size: 0.75rem;
   text-align: ${({ $isWeak }) => ($isWeak ? "left" : "right")};
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 
   background: var(--zinc-300);
 
   &::after {
-    content: "Senha fraca!";
+    content: "Senha fraca";
     display: block;
+    padding-top: 2px;
     color: var(--zinc-300);
   }
 
   ${({ $isWeak }) =>
-    $isWeak &&
+    !$isWeak &&
     css`
       background: var(--emerald-600);
 
       &::after {
-        content: "Senha forte!";
+        content: "Senha forte";
         display: block;
+        padding-top: 2px;
+        color: var(--emerald-600);
       }
     `}
 `;
 
 export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   height: 48px;
   background: var(--emerald-600);
   color: var(--zinc-100);
@@ -159,7 +165,7 @@ export const Button = styled.button`
   }
 `;
 
-export const LinkLogin = styled.a`
+export const LinkLogin = styled.div`
   font-size: 0.875rem;
   text-align: center;
 

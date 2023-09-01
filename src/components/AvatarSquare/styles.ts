@@ -1,7 +1,7 @@
 import { styled, css } from "styled-components";
 
 interface ContainerProps {
-  $size?: string;
+  $size: string;
   $borderEffect?: boolean;
 }
 

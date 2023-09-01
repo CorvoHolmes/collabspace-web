@@ -8,17 +8,18 @@ import {
   Info,
   Actions,
   ButtonAccept,
-  ButtonRefuse,
+  ButtonRecuse,
 } from "./styles";
 
 const RequestFriend: React.FC = () => {
   return (
     <Container>
       <User>
-        <AvatarCircle src="https://img.quizur.com/f/img5f0c80e0bd9d08.31973740.jpg?lastEdited=1594654954" />
+        <AvatarCircle src="https://images.generated.photos/rRsRe7d3ekuoklEhgFeJ0mlCEMsuw7je_Wzzmlo_9UM/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MjUzMzMyLmpwZw.jpg" />
+
         <Info>
-          <h1>José Antônio</h1>
-          <p>emailaleatorio@gmail.comasdasdsadda</p>
+          <h1>Marta Ribeiro</h1>
+          <p>martaribeiro@hotmaadsasdasdasdil.com</p>
         </Info>
       </User>
 
@@ -27,9 +28,9 @@ const RequestFriend: React.FC = () => {
           <Check size={18} />
         </ButtonAccept>
 
-        <ButtonRefuse>
+        <ButtonRecuse>
           <X size={18} />
-        </ButtonRefuse>
+        </ButtonRecuse>
       </Actions>
     </Container>
   );

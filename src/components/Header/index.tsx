@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const handleLogo = () => {
     navigate("/feed");
   };
+
   return (
     <Container>
       <LogoRocket onClick={handleLogo} />

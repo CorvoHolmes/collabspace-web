@@ -1,22 +1,26 @@
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { useAuthentication } from "../../contexts/Authentication";
+
+import { Spiner } from "../../assets/sources";
 
 import {
   Container,
   Form,
+  Group,
   Label,
   Input,
   Button,
-  Group,
   LinkRegister,
 } from "./styles";
-import { FormEvent, useState } from "react";
-import { useAuthentication } from "../../contexts/Authentication";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const { signIn } = useAuthentication();
+  const { signIn, loading, loggedEmail } = useAuthentication();
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(loggedEmail);
   const [password, setPassword] = useState("");
 
   const handleRegister = () => {
@@ -26,10 +30,10 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    const { result } = await signIn({ email, password });
+    const { result, message } = await signIn({ email, password });
 
-    if (result === "success") alert("Logado com sucesso!");
-    if (result === "error") alert("Falha ao fazer login!");
+    if (result === "success") toast.success(message);
+    if (result === "error") toast.error(message);
   };
 
   return (
@@ -43,6 +47,7 @@ const Login: React.FC = () => {
             id="email"
             name="email"
             type="text"
+            value={email}
             placeholder="Digite seu e-mail"
             required
             onChange={(e) => {
@@ -52,11 +57,12 @@ const Login: React.FC = () => {
         </Group>
 
         <Group>
-          <Label htmlFor="">Sua senha secreta</Label>
+          <Label htmlFor="password">Sua senha secreta</Label>
           <Input
             id="password"
             name="password"
             type="password"
+            value={password}
             placeholder="Digite sua senha"
             required
             onChange={(e) => {
@@ -65,7 +71,7 @@ const Login: React.FC = () => {
           />
         </Group>
 
-        <Button>Fazer login</Button>
+        <Button>{loading ? <Spiner /> : "Fazer login"}</Button>
 
         <LinkRegister>
           <p>Novo no Collabspace?</p>

@@ -24,4 +24,4 @@ interface ISessionResponse extends AppResponse {
   data?: ISession;
 }
 
-export type { User, ISession, ISessionRequest, ISessionResponse };
+export type { User, ISessionRequest, ISessionResponse };

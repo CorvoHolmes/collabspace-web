@@ -4,17 +4,18 @@ export const Container = styled.aside`
   width: 25%;
   height: 350px;
   background: var(--zinc-800);
-
   border-radius: 8px;
 `;
 
-export const Header = styled.header`
+export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   div {
     margin-top: -28px;
+
+    cursor: pointer;
   }
 `;
 
@@ -38,6 +39,8 @@ export const Content = styled.div`
     color: var(--zinc-200);
     font-weight: bold;
 
+    cursor: pointer;
+
     &:hover {
       text-decoration: underline;
     }
@@ -49,7 +52,7 @@ export const Content = styled.div`
   }
 `;
 
-export const Footer = styled.footer`
+export const Footer = styled.div`
   display: flex;
   justify-content: center;
 `;

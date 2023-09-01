@@ -1,5 +1,7 @@
 import { ThumbsUp, ChatCircleText } from "phosphor-react";
+import moment from "moment";
 
+import AvatarSquare from "../AvatarSquare";
 import Comment from "../Comment";
 import InputArea from "../InputArea";
 import Button from "../Button";
@@ -24,46 +26,65 @@ import {
   Comments,
 } from "./styles";
 import { useState } from "react";
-import AvatarSquare from "../AvatarSquare";
 
-const Post: React.FC = () => {
+interface PostProps {
+  authorAvatar: string | null;
+  authorName: string;
+  authorEmail: string;
+  publishedAt: string;
+  content: string;
+  tags: string | null;
+  comments: any[];
+  reactions: any[];
+}
+
+const Post: React.FC<PostProps> = ({
+  authorAvatar,
+  authorName,
+  authorEmail,
+  publishedAt,
+  content,
+  tags,
+  comments = [],
+  reactions,
+}) => {
   const [commentArea, setCommentArea] = useState(false);
 
   function toggleCommentArea() {
     setCommentArea(!commentArea);
   }
 
+  const diff = moment().diff(publishedAt, "seconds");
+
   return (
     <Container>
       <Header>
         <Author>
           <AvatarSquare
-            src="https://i.pinimg.com/736x/b7/65/02/b76502e936cd209b595bd7a537e74db4.jpg"
+            src={
+              authorAvatar ||
+              "https://images-ext-1.discordapp.net/external/5hyJpFaJWGqRGEUP8osz0gM1MG5bIE37lqvs1RwdH6Q/https/i.imgur.com/HYrZqHy.jpg"
+            }
             borderEffect
           />
 
           <AuthorInfo>
-            <h1>Natan Foleto</h1>
-            <p>natanfoleto@hotmail.com</p>
+            <h1>{authorName}</h1>
+            <p>{authorEmail}</p>
           </AuthorInfo>
         </Author>
 
-        <time>Publicado à 1h</time>
+        {diff}
+        <time>{moment(publishedAt).format("[Publicado em ] MM ")}</time>
       </Header>
 
       <Content>
         <Description>
-          <p>Fala galeraa 👋</p>
-          <p>
-            Você pode sempre sonhar, e seus sonhos se tornarão sonhos, e a
-            realidade se tornará realidade. Mas é você que tem que torná-los
-            realidade. 🚀
-          </p>
+          <p>{content}</p>
         </Description>
 
         <Hashtags>
-          <span>#collabspace</span>
-          <span>#confia</span>
+          <span>{tags}</span>
         </Hashtags>
       </Content>
 
@@ -71,13 +92,13 @@ const Post: React.FC = () => {
         <InteractionInfo>
           <CountReaction>
             <span>
-              <ThumbsUp size={20} weight="bold" />
-              32
+              <ThumbsUp size={19} weight="bold" />
+              {reactions.length}
             </span>
           </CountReaction>
 
           <CountComment>
-            <span onClick={toggleCommentArea}>7 comentários</span>
+            <span onClick={toggleCommentArea}>{comments.length}</span>
           </CountComment>
         </InteractionInfo>
 
@@ -86,6 +107,7 @@ const Post: React.FC = () => {
             <ThumbsUp size={22} />
             Reagir
           </ButtonAction>
+
           <ButtonAction onClick={toggleCommentArea}>
             <ChatCircleText size={22} />
             Comentar
@@ -97,10 +119,7 @@ const Post: React.FC = () => {
         <CommentForm>
           <h1>Deixe seu comentário</h1>
 
-          <InputArea
-            placeholder="Escreva seu comentário..."
-            rows={3}
-          ></InputArea>
+          <InputArea rows={3} placeholder="Escreva seu comentário aqui ..." />
 
           <Button>Comentar</Button>
         </CommentForm>

@@ -3,14 +3,8 @@ import { styled } from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
   justify-content: space-between;
-`;
-
-export const Avatar = styled.img`
-  width: 48px;
-  height: 48px;
-  border-radius: 100%;
+  gap: 1rem;
 `;
 
 export const User = styled.div`
@@ -33,6 +27,7 @@ export const Info = styled.div`
     font-size: 0.875rem;
     color: var(--zinc-200);
     font-weight: 200;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -46,7 +41,6 @@ export const Actions = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 0;
     outline: 0;
     background: transparent;
@@ -59,6 +53,6 @@ export const ButtonAccept = styled.button`
   color: var(--emerald-500);
 `;
 
-export const ButtonRefuse = styled.button`
+export const ButtonRecuse = styled.button`
   color: var(--red-500);
 `;

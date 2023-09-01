@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { styled, css } from "styled-components";
 
 interface CommentAreaProps {
   $commentArea: boolean;
@@ -87,7 +87,6 @@ export const Interactions = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 2rem 0;
 
   margin-top: 2rem;
 `;
@@ -130,31 +129,23 @@ export const InteractionAction = styled.div`
   align-items: center;
   justify-content: space-around;
   gap: 2rem;
-
-  span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    font-size: 0.875rem;
-    color: var(--zinc-400);
-    font-weight: 500;
-  }
 `;
 
 export const ButtonAction = styled.button`
   width: 25%;
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 4px;
   background: transparent;
   border: 0;
   outline: 0;
+  border-radius: 4px;
   padding: 0.5rem 2rem;
   font-size: 0.875rem;
   color: var(--zinc-400);
   font-weight: 500;
-  transition: all 0.5s;
+  transition: all 0.15s;
 
   cursor: pointer;
 

@@ -11,6 +11,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
   margin-bottom: 2rem;
 `;
 
@@ -44,8 +45,8 @@ export const EditCoverButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: var(--emerald-600);
-    color: var(--zinc-200);
+    background: var(--zinc-300);
+    color: var(--emerald-600);
   }
 `;
 
@@ -55,16 +56,6 @@ export const Cover = styled.img`
   height: 192px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
-`;
-
-export const UserInfo = styled.div`
-  display: flex;
-  height: 250px;
-  gap: 1rem;
-  background: var(--zinc-800);
-  border-radius: 0 0 8px 8px;
-  margin-top: -40px;
-  padding: 4rem 1rem 2rem 1rem;
 `;
 
 export const EditInfoButton = styled.button`
@@ -80,6 +71,7 @@ export const EditInfoButton = styled.button`
   outline: 0;
   background: transparent;
   color: var(--zinc-300);
+  transition: ease 0.15s;
 
   cursor: pointer;
 
@@ -88,11 +80,20 @@ export const EditInfoButton = styled.button`
   }
 `;
 
+export const UserInfo = styled.div`
+  display: flex;
+  gap: 1rem;
+  background: var(--zinc-800);
+  border-radius: 0 0 8px 8px;
+  margin-top: -40px;
+  padding: 4rem 1rem 2rem 1rem;
+`;
+
 export const General = styled.div`
   flex: 0.7;
 
   h1 {
-    color: var(--zinc-200);
+    color: var(--zinc-100);
     font-size: 1.5rem;
     font-weight: 500;
   }
@@ -112,7 +113,7 @@ export const Total = styled.div`
 
   span {
     color: var(--zinc-300);
-    font-weight: 300px;
+    font-weight: 300;
 
     &:hover {
       text-decoration: underline;
@@ -134,7 +135,7 @@ export const Contact = styled.div`
     gap: 8px;
 
     color: var(--zinc-300);
-    font-weight: 300px;
+    font-weight: 300;
   }
 `;
 
@@ -197,7 +198,7 @@ export const Requests = styled.div`
   h1 {
     font-size: 1rem;
     color: var(--zinc-400);
-    font-weight: 600;
+    font-weight: 500;
   }
 `;
 
