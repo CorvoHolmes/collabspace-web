@@ -24,7 +24,7 @@ const ProfileCard: React.FC = () => {
   return (
     <Container>
       <Header>
-        <Cover src="https://cutewallpaper.org/29/dual-screen-mr-robot-wallpaper/247286624.jpg" />
+        <Cover src="https://images-ext-1.discordapp.net/external/2q3UXnCM9N0wfsEExB4O63TMv5BMWpNkBMuTbvzltDg/https/i.imgur.com/gH2QLjf.png" />
 
         <div onClick={handleMe}>
           <AvatarSquare
