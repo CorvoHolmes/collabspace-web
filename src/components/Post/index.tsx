@@ -181,6 +181,7 @@ const Post: React.FC<PostProps> = ({
           {comments.map((comment) => (
             <Comment
               key={comment.id}
+              postAuthorId={authorId}
               authorId={comment.user.id}
               authorAvatar={comment.user.avatarUrl}
               authorName={comment.user.name}
