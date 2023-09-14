@@ -1,7 +1,10 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import moment from "moment";
+
+import { IUser } from "../../services/users/types";
+import { listUserById } from "../../services/users";
 
 import LayoutDefault from "../../layouts/Default";
 
@@ -30,14 +33,12 @@ import {
   Requests,
   RequestList,
 } from "./styles";
-import { listUserById } from "../../services/users";
-import { IUser } from "../../services/users/types";
 import { useAuthentication } from "../../contexts/Authentication";
 
 moment.defineLocale("pt-br", {
   weekdays: "Segunda_Terça_Quarta_Quinta_Sexta_Sábado_Domingo".split("_"),
   months:
-    "Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro".split(
+    "Janeiro_Fereveiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro".split(
       "_",
     ),
 });
@@ -57,7 +58,7 @@ const Profile: React.FC = () => {
           if (data) setUser(data.user);
         }
 
-        if (result === "error") console.log(message);
+        if (result === "error") toast.error(message);
       }
     } catch (error: any) {
       toast.error(error.message);
@@ -78,15 +79,12 @@ const Profile: React.FC = () => {
                 <Camera size={22} weight="fill" />
               </EditCoverButton>
 
-              <Cover src="https://images-ext-1.discordapp.net/external/2q3UXnCM9N0wfsEExB4O63TMv5BMWpNkBMuTbvzltDg/https/i.imgur.com/gH2QLjf.png" />
+              <Cover src={"https://i.imgur.com/gH2QLjf.png"} />
 
               <div>
                 <AvatarCircle
                   size="192px"
-                  src={
-                    user?.avatarUrl ||
-                    "https://images-ext-1.discordapp.net/external/5hyJpFaJWGqRGEUP8osz0gM1MG5bIE37lqvs1RwdH6Q/https/i.imgur.com/HYrZqHy.jpg"
-                  }
+                  src={user?.avatarUrl || "https://i.imgur.com/HYrZqHy.jpg"}
                 />
               </div>
 
@@ -122,7 +120,7 @@ const Profile: React.FC = () => {
                 {user?.telephone && (
                   <span>
                     <Phone size={20} weight="bold" />
-                    (17) 99242-4418
+                    {user.telephone}
                   </span>
                 )}
 
@@ -171,7 +169,7 @@ const Profile: React.FC = () => {
             </RequestList>
           </Requests>
 
-          <a style={{ color: "white", marginTop: "16px" }} onClick={signOut}>
+          <a style={{ color: "white" }} onClick={signOut}>
             Sair
           </a>
         </Sidebar>

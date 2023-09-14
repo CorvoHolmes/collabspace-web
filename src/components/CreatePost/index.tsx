@@ -1,16 +1,17 @@
 import { useState, useCallback, FormEvent } from "react";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { useAuthentication } from "../../contexts/Authentication";
+
+import { createPost } from "../../services/posts";
+import { IPost } from "../../services/posts/types";
 
 import Avatar from "../AvatarSquare";
 import InputArea from "../InputArea";
 import Button from "../Button";
 
-import { useAuthentication } from "../../contexts/Authentication";
-
 import { Container, Form } from "./styles";
-import { createPost } from "../../services/posts";
-import { IPost } from "../../services/posts/types";
 
 interface CreatePostProps {
   onCreatePost: (post: IPost) => void;
@@ -18,7 +19,6 @@ interface CreatePostProps {
 
 const CreatePost: React.FC<CreatePostProps> = ({ onCreatePost }) => {
   const navigate = useNavigate();
-
   const { user } = useAuthentication();
 
   const [content, setContent] = useState<string>("");
@@ -37,6 +37,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ onCreatePost }) => {
             toast.success(message);
           }
         }
+
         if (result === "error") toast.error(message);
       } catch (error: any) {
         toast.error(error.message);
@@ -53,10 +54,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ onCreatePost }) => {
     <Container>
       <Avatar
         onClick={handleMe}
-        src={
-          user?.avatarUrl ||
-          "https://images-ext-1.discordapp.net/external/5hyJpFaJWGqRGEUP8osz0gM1MG5bIE37lqvs1RwdH6Q/https/i.imgur.com/HYrZqHy.jpg"
-        }
+        src={user?.avatarUrl || "https://i.imgur.com/HYrZqHy.jpg"}
         borderEffect
       />
 
@@ -71,6 +69,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ onCreatePost }) => {
             setContent(e.target.value);
           }}
         />
+
         <Button>Publicar</Button>
       </Form>
     </Container>

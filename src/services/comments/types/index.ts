@@ -1,16 +1,42 @@
-import { ICreateCommentRequest, ICreateCommentResponse } from "..";
-import api from "../../Api/api";
+import { AppResponse } from "../../Api/types";
 
-const createComment = async ({
-  postId,
-  content,
-}: ICreateCommentRequest): Promise<ICreateCommentResponse> => {
-  const response = await api
-    .post(`/comments/${postId}`, { content })
-    .then((res) => res)
-    .catch((res) => res);
+import { IReaction } from "../../reactions/types";
 
-  return response.data;
+interface IUserComment {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl: string | null;
+}
+
+interface IComment {
+  id: string;
+  content: string;
+  commentedAt: string;
+  user: IUserComment;
+  reactions: IReaction[];
+}
+
+interface ICreateCommentRequest {
+  postId: string;
+  content: string;
+}
+
+interface ICreateCommentResponse extends AppResponse {
+  data?: IComment;
+}
+
+interface IDeleteCommentRequest {
+  commentId: string;
+  postId: string;
+}
+
+type IDeleteCommentResponse = AppResponse;
+
+export type {
+  IComment,
+  ICreateCommentRequest,
+  ICreateCommentResponse,
+  IDeleteCommentRequest,
+  IDeleteCommentResponse,
 };
-
-export { createComment };

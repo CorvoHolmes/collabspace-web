@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+import { useAuthentication } from "../../contexts/Authentication";
+
 import {
   Container,
   Header,
@@ -11,27 +13,24 @@ import {
 } from "./styles";
 
 import AvatarSquare from "../AvatarSquare";
-import { useAuthentication } from "../../contexts/Authentication";
 
 const ProfileCard: React.FC = () => {
   const { user } = useAuthentication();
+
   const navigate = useNavigate();
 
   const handleMe = () => {
-    if (user) navigate(`/me/${user?.id}`);
+    if (user) navigate(`/me/${user.id}`);
   };
 
   return (
     <Container>
       <Header>
-        <Cover src="https://images-ext-1.discordapp.net/external/2q3UXnCM9N0wfsEExB4O63TMv5BMWpNkBMuTbvzltDg/https/i.imgur.com/gH2QLjf.png" />
+        <Cover src={"https://i.imgur.com/gH2QLjf.png"} />
 
         <div onClick={handleMe}>
           <AvatarSquare
-            src={
-              user?.avatarUrl ||
-              "https://images-ext-1.discordapp.net/external/5hyJpFaJWGqRGEUP8osz0gM1MG5bIE37lqvs1RwdH6Q/https/i.imgur.com/HYrZqHy.jpg"
-            }
+            src={user?.avatarUrl || "https://i.imgur.com/HYrZqHy.jpg"}
             borderEffect
           />
         </div>

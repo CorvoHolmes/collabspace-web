@@ -37,7 +37,6 @@ export const AuthorAndTime = styled.div`
   }
 
   time {
-    max-width: max-content;
     font-size: 0.75rem;
     color: var(--zinc-500);
   }

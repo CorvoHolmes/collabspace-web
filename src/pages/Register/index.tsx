@@ -32,6 +32,7 @@ const Register: React.FC = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const areaEmail = !name || !birthDate;

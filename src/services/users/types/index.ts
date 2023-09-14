@@ -41,9 +41,9 @@ interface IListUserByIdResponse extends AppResponse {
 }
 
 export type {
+  IUser,
   ICreateUserRequest,
   ICreateUserResponse,
   IListUserByIdRequest,
   IListUserByIdResponse,
-  IUser,
 };

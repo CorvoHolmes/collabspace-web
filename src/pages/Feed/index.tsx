@@ -8,6 +8,7 @@ import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 
 import { Container, Posts } from "./styles";
+
 import { IPost } from "../../services/posts/types";
 import { listAllPosts } from "../../services/posts";
 
@@ -24,13 +25,18 @@ const Feed: React.FC = () => {
 
       if (result === "error") toast.error(message);
     } catch (error: any) {
-      toast.error(`Erro ao listar posts ${error.message}`);
+      toast.error(error.message);
     }
   }, []);
 
-  const handleAddPost = (post: IPost) => {
-    setPosts((prevState) => [...prevState, post]);
-  };
+  const handleAddPost = (post: IPost) =>
+    setPosts((prevState) => {
+      const posts = [...prevState];
+
+      posts.unshift(post);
+
+      return posts;
+    });
 
   useEffect(() => {
     handleListAllPosts();
@@ -57,7 +63,6 @@ const Feed: React.FC = () => {
               comments={post.comments}
               reactions={post.reactions}
               publishedAt={post.publishedAt}
-              onCreateComment={handleListAllPosts}
             />
           ))}
         </Posts>
