@@ -64,9 +64,9 @@ export const Interactions = styled.div`
   }
 
   span {
-    &:hover {
-      cursor: pointer;
+    cursor: pointer;
 
+    &:hover {
       text-decoration: underline;
     }
   }

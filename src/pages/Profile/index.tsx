@@ -1,16 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import moment from "moment";
 
 import { IUser } from "../../services/users/types";
-import { listUserById } from "../../services/users";
+import { listUserById, updateAvatar, updateCover } from "../../services/users";
 
 import LayoutDefault from "../../layouts/Default";
 
 import AvatarCircle from "../../components/AvatarCircle";
 import RequestFriend from "../../components/RequestFriend";
 import FriendCard from "../../components/FriendCard";
+import Modal from "../../components/Modal";
 
 import { Camera, PencilSimple, MapPin, Phone, Clock } from "phosphor-react";
 
@@ -32,6 +33,9 @@ import {
   Sidebar,
   Requests,
   RequestList,
+  FormEdit,
+  InputEdit,
+  ButtonEdit,
 } from "./styles";
 import { useAuthentication } from "../../contexts/Authentication";
 
@@ -45,9 +49,14 @@ moment.defineLocale("pt-br", {
 
 const Profile: React.FC = () => {
   const { id } = useParams();
-  const { signOut } = useAuthentication();
+  const { handleAvatarUrl, handleCoverUrl, signOut } = useAuthentication();
 
   const [user, setUser] = useState<IUser | null>(null);
+
+  const [modalEditAvatar, setModalEditAvatar] = useState(false);
+  const [modalEditCover, setModalEditCover] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [coverUrl, setCoverUrl] = useState("");
 
   const handleListUserById = useCallback(async () => {
     try {
@@ -65,6 +74,56 @@ const Profile: React.FC = () => {
     }
   }, [id]);
 
+  const handleUpdateAvatar = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+
+      try {
+        const { result, message } = await updateAvatar({ avatarUrl });
+
+        if (result === "success") {
+          handleAvatarUrl(avatarUrl);
+          toast.success(message);
+          setModalEditAvatar(!modalEditAvatar);
+        }
+
+        if (result === "error") toast.error(message);
+      } catch (error: any) {
+        toast.error(error.message);
+      }
+    },
+    [avatarUrl, handleAvatarUrl, modalEditAvatar],
+  );
+
+  const handleUpdateCover = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+
+      try {
+        const { result, message } = await updateCover({ coverUrl });
+
+        if (result === "success") {
+          handleCoverUrl(coverUrl);
+          toast.success(message);
+          setModalEditCover(!modalEditCover);
+        }
+
+        if (result === "error") toast.error(message);
+      } catch (error: any) {
+        toast.error(error.message);
+      }
+    },
+    [coverUrl, handleCoverUrl, modalEditCover],
+  );
+
+  function toggleModalEditAvatar() {
+    setModalEditAvatar(!modalEditAvatar);
+  }
+
+  function toggleModalEditCover() {
+    setModalEditCover(!modalEditCover);
+  }
+
   useEffect(() => {
     handleListUserById();
   }, [id, handleListUserById]);
@@ -75,16 +134,23 @@ const Profile: React.FC = () => {
         <Content>
           <Overview>
             <UserBanner>
-              <EditCoverButton>
+              <EditCoverButton onClick={toggleModalEditCover}>
                 <Camera size={22} weight="fill" />
               </EditCoverButton>
 
-              <Cover src={"https://i.imgur.com/gH2QLjf.png"} />
+              <Cover
+                src={
+                  coverUrl ||
+                  user?.coverUrl ||
+                  "https://i.imgur.com/gH2QLjf.png"
+                }
+              />
 
               <div>
                 <AvatarCircle
                   size="192px"
-                  src={user?.avatarUrl || "https://i.imgur.com/HYrZqHy.jpg"}
+                  avatar={avatarUrl || user?.avatarUrl}
+                  onClick={toggleModalEditAvatar}
                 />
               </div>
 
@@ -173,6 +239,48 @@ const Profile: React.FC = () => {
             Sair
           </a>
         </Sidebar>
+
+        <Modal
+          width="75%"
+          height="120px"
+          isOpen={modalEditAvatar}
+          onClose={toggleModalEditAvatar}
+        >
+          <FormEdit onSubmit={handleUpdateAvatar}>
+            <InputEdit
+              name="avatarUrl"
+              type="text"
+              value={avatarUrl}
+              onChange={(e) => {
+                setAvatarUrl(e.target.value);
+              }}
+              required
+              placeholder="URL da imagem"
+            />
+            <ButtonEdit>SALVAR</ButtonEdit>
+          </FormEdit>
+        </Modal>
+
+        <Modal
+          width="75%"
+          height="120px"
+          isOpen={modalEditCover}
+          onClose={toggleModalEditCover}
+        >
+          <FormEdit onSubmit={handleUpdateCover}>
+            <InputEdit
+              name="coverUrl"
+              type="text"
+              value={coverUrl}
+              onChange={(e) => {
+                setCoverUrl(e.target.value);
+              }}
+              required
+              placeholder="URL do cover"
+            />
+            <ButtonEdit>SALVAR</ButtonEdit>
+          </FormEdit>
+        </Modal>
       </Container>
     </LayoutDefault>
   );
