@@ -257,3 +257,8 @@ export const ButtonEdit = styled.button`
     background: var(--emerald-600);
   }
 `;
+
+export const PreviewAvatar = styled.img`
+  width: 100%;
+  height: 100%;
+`;
