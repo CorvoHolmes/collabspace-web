@@ -10,7 +10,7 @@ function AuthRoutes() {
       <Route path="/" element={<Navigate to="/feed" />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/me/:id" element={<Profile />} />
-      <Route path="/updateProfile" element={<UpdateProfile />} />
+      <Route path="/profile" element={<UpdateProfile />} />
 
       <Route path="*" element={<Navigate to="/feed" />} />
     </Routes>

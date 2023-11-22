@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, FormEvent } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import moment from "moment";
 
@@ -77,6 +77,8 @@ const Profile: React.FC = () => {
     handleAvatarUrl,
     handleCoverUrl,
   } = useAuthentication();
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState<IUser | null>(null);
   const [friends, setFriends] = useState<IFriend[]>([]);
@@ -375,7 +377,7 @@ const Profile: React.FC = () => {
               </div>
 
               {isOwner && (
-                <EditInfoButton>
+                <EditInfoButton onClick={() => navigate("/profile")}>
                   <PencilSimple size={22} weight="bold" />
                 </EditInfoButton>
               )}
