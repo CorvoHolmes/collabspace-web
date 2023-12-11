@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Posts = styled.div`
-  width: 75%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;

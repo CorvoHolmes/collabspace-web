@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from "react-router-dom";
 
-import { SignOut, House } from "phosphor-react";
+import { SignOut, House, Mouse } from "phosphor-react";
 
 import { useAuthentication } from "../../contexts/Authentication";
 
@@ -19,8 +19,12 @@ import {
   Divider,
 } from "./styles";
 
-const ITEMS_HEADER = [
+const itensFeed = [
   { path: "/feed", icon: <House size={28} weight="fill" /> },
+  {
+    path: "/me/0bc72890-5689-4213-a976-166cad648961",
+    icon: <Mouse size={28} weight="fill" />,
+  },
 ];
 
 const Header: React.FC = () => {
@@ -40,7 +44,7 @@ const Header: React.FC = () => {
 
       <Navbar>
         <Menu>
-          {ITEMS_HEADER.map((item) => (
+          {itensFeed.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}

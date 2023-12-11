@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../contexts/Authentication";
 
 import {
@@ -15,8 +14,6 @@ import AvatarSquare from "../AvatarSquare";
 
 const ProfileCard: React.FC = () => {
   const { user, me } = useAuthentication();
-
-  const navigate = useNavigate();
 
   return (
     <Container>
@@ -36,9 +33,7 @@ const ProfileCard: React.FC = () => {
       <Divider />
 
       <Footer>
-        <ButtonEdit onClick={() => navigate("/profile")}>
-          Editar seu perfil
-        </ButtonEdit>
+        <ButtonEdit>Editar seu perfil</ButtonEdit>
       </Footer>
     </Container>
   );

@@ -1,4 +1,5 @@
 import { AppResponse } from "../../Api/types";
+import { IAddress } from "../../address/types";
 
 interface IUser {
   id: string;
@@ -10,6 +11,7 @@ interface IUser {
   coverUrl: string | null;
   bio: string | null;
   createdAt: string;
+  address: IAddress[];
 }
 
 interface ICreateUserRequest {
@@ -42,6 +44,15 @@ interface IListUserByIdResponse extends AppResponse {
   };
 }
 
+interface IUpdateUserRequest {
+  name?: string;
+  telephone?: string;
+  birthDate?: string;
+  bio?: string;
+}
+
+type IUpdateUserResponse = AppResponse;
+
 interface IUpdateAvatarRequest {
   avatarUrl: string;
 }
@@ -54,6 +65,13 @@ interface IUpdateCoverRequest {
 
 type IUpdateCoverResponse = AppResponse;
 
+interface IUpdatePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
+type IUpdatePasswordResponse = AppResponse;
+
 export type {
   IUser,
   ICreateUserRequest,
@@ -64,4 +82,8 @@ export type {
   IUpdateAvatarResponse,
   IUpdateCoverRequest,
   IUpdateCoverResponse,
+  IUpdateUserRequest,
+  IUpdateUserResponse,
+  IUpdatePasswordRequest,
+  IUpdatePasswordResponse,
 };

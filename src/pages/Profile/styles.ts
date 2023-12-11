@@ -296,3 +296,14 @@ export const PreviewAvatar = styled.img`
   width: 100%;
   height: 100%;
 `;
+
+export const TitlePosts = styled.div`
+  background-color: var(--zinc-800);
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 8px;
+
+  h1 {
+    color: var(--zinc-200);
+  }
+`;

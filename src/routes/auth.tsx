@@ -16,5 +16,4 @@ function AuthRoutes() {
     </Routes>
   );
 }
-
 export default AuthRoutes;
