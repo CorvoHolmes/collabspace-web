@@ -44,8 +44,7 @@ export const Menu = styled.div`
 
   .active {
     button {
-      padding: 0 calc(2.5rem + 8px);
-
+      padding: 0 calc(2rem + 8px);
       border-bottom: 3px solid var(--emerald-600);
 
       svg {
@@ -79,7 +78,7 @@ export const Item = styled.button`
   justify-content: center;
 
   height: 100%;
-  padding: 0 2.5rem;
+  padding: 0 2rem;
   background: transparent;
   outline: 0;
   border: 0;

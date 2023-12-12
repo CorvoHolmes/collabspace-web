@@ -9,6 +9,10 @@ import {
   IUpdateAvatarResponse,
   IUpdateCoverRequest,
   IUpdateCoverResponse,
+  IUpdateUserRequest,
+  IUpdateUserResponse,
+  IUpdatePasswordRequest,
+  IUpdatePasswordResponse,
 } from "./types";
 
 const createUser = async ({
@@ -47,6 +51,40 @@ const listUserById = async ({
   return response.data;
 };
 
+const UupdateUser = async ({
+  name,
+  telephone,
+  birthDate,
+  bio,
+}: IUpdateUserRequest): Promise<IUpdateUserResponse> => {
+  const response = await api
+    .put("/users", {
+      name,
+      telephone,
+      birthDate,
+      bio,
+    })
+    .then((res) => res)
+    .catch((err) => err);
+
+  return response.data;
+};
+
+const UpdatePassword = async ({
+  currentPassword,
+  newPassword,
+}: IUpdatePasswordRequest): Promise<IUpdatePasswordResponse> => {
+  const response = await api
+    .patch("/users/updatePassword", {
+      currentPassword,
+      newPassword,
+    })
+    .then((res) => res)
+    .catch((err) => err);
+
+  return response.data;
+};
+
 const updateAvatar = async ({
   avatarUrl,
 }: IUpdateAvatarRequest): Promise<IUpdateAvatarResponse> => {
@@ -69,4 +107,11 @@ const updateCover = async ({
   return response.data;
 };
 
-export { createUser, listUserById, updateAvatar, updateCover };
+export {
+  createUser,
+  listUserById,
+  updateAvatar,
+  UupdateUser,
+  UpdatePassword,
+  updateCover,
+};
